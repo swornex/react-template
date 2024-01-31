@@ -23,9 +23,9 @@ module.exports = {
   plugins: [
     require('daisyui'),
   ],
-  daisyui: {
-    themes: [
-      'emerald'
-    ],
-  }
+  // daisyui: {
+  //   themes: [
+  //     'emerald'
+  //   ],
+  // }
 }

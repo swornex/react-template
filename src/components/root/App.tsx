@@ -1,13 +1,58 @@
-import {HelmetProvider} from "react-helmet-async";
-import {AuthProvider} from "~/components/contexts/UserContext";
-import Main from "~/components/root/Main";
+import { useRef, useState, useEffect } from 'react';
 
+const initialTime = 300;
 export const App = () => {
+  const [timer, setTimer] = useState(initialTime);
+  const [isTimerOn, setIsTimerOn] = useState(false);
+  const interval = useRef<any>();
+
+  function handleStartButton() {
+    console.log(timer, 'timer inside function');
+    interval.current = setInterval(() => {
+      setTimer((timer) => (timer > 0 ? timer - 1 : 0));
+    }, 1000);
+    setIsTimerOn(true);
+  }
+
+  useEffect(() => {
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
+  function handleStopButton() {
+    clearInterval(interval.current);
+    setIsTimerOn(false);
+  }
+
+  function handleResetButton() {
+    clearInterval(interval.current);
+    setTimer(initialTime);
+    setIsTimerOn(false);
+  }
+
   return (
-    <HelmetProvider>
-      <AuthProvider>
-        <Main />
-      </AuthProvider>
-    </HelmetProvider>
-  )
+    <div className="card w-96 bg-neutral text-neutral-content items-center text-center mx-auto my-4">
+      <h1 className="card-title">
+        Timer: {Math.floor(timer / 60)}min {Math.floor(timer % 60)}sec
+      </h1>
+      <div className="flex">
+        <div>
+          <button
+            className={isTimerOn ? 'btn btn-error m-4' : 'btn btn-primary m-4'}
+            onClick={isTimerOn ? handleStopButton : handleStartButton}
+          >
+            {isTimerOn ? 'Stop' : 'Start'}
+          </button>
+        </div>
+        <div>
+          <button className="btn btn-primary m-4" onClick={handleResetButton}>
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
+
+export default App;
