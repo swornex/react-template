@@ -1,62 +1,63 @@
-import { useState } from 'react';
-import logo from './assets/images/logo.svg';
+import { useRef, useState, useEffect } from 'react';
 
-const App = () => {
-  const [count, setCount] = useState(0);
+const initialTime = 300;
+export const App = () => {
+  const [timer, setTimer] = useState(initialTime);
+  const [isTimerOn, setIsTimerOn] = useState(false);
+  const interval = useRef<ReturnType<typeof setInterval>>();
+  function handleButtonClick() {
+    if (isTimerOn) {
+      handleStopButton();
+      return;
+    }
+
+    handleStartButton();
+  }
+  function handleStartButton() {
+    console.log(timer, 'timer inside function');
+    interval.current = setInterval(() => {
+      setTimer((timer) => (timer > 0 ? timer - 1 : 0));
+    }, 1000);
+    setIsTimerOn(true);
+  }
+
+  useEffect(() => {
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
+  function handleStopButton() {
+    clearInterval(interval.current);
+    setIsTimerOn(false);
+  }
+
+  function handleResetButton() {
+    clearInterval(interval.current);
+    setTimer(initialTime);
+    setIsTimerOn(false);
+  }
 
   return (
-    <div className="text-center selection:bg-green-900">
-      <header className="flex min-h-screen flex-col items-center justify-center bg-[#282c34] text-white">
-        <img
-          src={logo}
-          className="animate-speed h-60 motion-safe:animate-spin"
-          alt="logo"
-        />
-        <style>
-          {
-            '\
-            .animate-speed{\
-              animation-duration:20s;\
-            }\
-          '
-          }
-        </style>
-        <p className="bg-gradient-to-r from-emerald-300 to-sky-300 bg-clip-text text-5xl font-black text-transparent selection:bg-transparent">
-          Vite + React + Typescript + Tailwindcss
-        </p>
-        <p className="mt-3">
+    <div className="card mx-auto my-4 w-96 items-center bg-neutral text-center text-neutral-content">
+      <h1 className="card-title">
+        Timer: {Math.floor(timer / 60)}min {Math.floor(timer % 60)}sec
+      </h1>
+      <div className="flex">
+        <div>
           <button
-            type="button"
-            className="my-6 rounded bg-gray-300 px-2 py-2 text-[#282C34] transition-all hover:bg-gray-200"
-            onClick={() => setCount((count) => count + 1)}
+            className={isTimerOn ? 'btn btn-error m-4' : 'btn btn-primary m-4'}
+            onClick={handleButtonClick}
           >
-            count is: {count}
+            {isTimerOn ? 'Stop' : 'Start'}
           </button>
-        </p>
-        <p>
-          Edit <code className="text-[#8d96a7]">App.tsx</code> and save to test
-          HMR updates.
-        </p>
-        <p className="mt-3 flex gap-3 text-center text-[#8d96a7]">
-          <a
-            className="text-[#61dafb] transition-all hover:text-blue-400"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="text-[#61dafb] transition-all hover:text-blue-400"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+        </div>
+        <div>
+          <button className="btn btn-primary m-4" onClick={handleResetButton}>
+            Reset
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
