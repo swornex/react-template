@@ -45,12 +45,12 @@ export const Timer = () => {
   }
 
   return (
-    <div className="flex h-full flex-col items-center gap-5 bg-slate-200 pt-48">
+    <div className="flex h-full flex-col items-center justify-center gap-5 bg-slate-200">
       <span className="text-3xl font-bold">Simple Timer</span>
 
-      <div className="card mx-auto w-96 items-center bg-white text-center text-black">
+      <div className="card w-96 items-center bg-white text-center text-black">
         <div className="m-5 flex items-center gap-4">
-          <div className="card w-20 rounded bg-purple-600 p-4 text-white ">
+          <div className="card w-20 rounded bg-sky-400 p-4 text-white ">
             <h1 className="card-title justify-center text-2xl">
               {Math.floor(timer / 60)}
             </h1>
@@ -60,7 +60,7 @@ export const Timer = () => {
             :
           </span>
 
-          <div className="card w-20 rounded bg-purple-600 p-4 text-white ">
+          <div className="card w-20 rounded bg-sky-400 p-4 text-white ">
             <h1 className="card-title  justify-center text-2xl">
               {Math.floor(timer % 60)}
             </h1>
