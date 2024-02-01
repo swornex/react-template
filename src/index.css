@@ -13,3 +13,9 @@
     height: 100%;
   }
 }
+
+@layer components {
+  .items {
+    @apply flex items-center gap-2;
+  }
+}

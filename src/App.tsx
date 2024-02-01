@@ -1,9 +1,11 @@
-import Timer from './components/timer/Timer';
+// import Timer from './components/timer/Timer';
+import Weather from './components/weather/Weather';
 
 export const App = () => {
   return (
     <>
-      <Timer />
+      {/* <Timer /> */}
+      <Weather />
     </>
   );
 };
