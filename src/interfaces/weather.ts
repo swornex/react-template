@@ -1,6 +1,6 @@
 import { Icon } from '@phosphor-icons/react';
 
-interface WeatherResInterface {
+export interface WeatherResInterface {
   interval: number;
   rain: number;
   relative_humidity_2m: number;
