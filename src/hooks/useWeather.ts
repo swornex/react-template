@@ -1,4 +1,4 @@
-import { WeatherResInterface } from '@/interfaces/weather';
+import { WeatherResInterface } from '@/components/weather/WeatherDisplay';
 import { useEffect, useState } from 'react';
 
 const useWeather = (long: number, lat: number) => {
@@ -9,10 +9,10 @@ const useWeather = (long: number, lat: number) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getWeather();
+    fetchWeather();
   }, [long, lat]);
 
-  async function getWeather() {
+  async function fetchWeather() {
     try {
       setIsLoading(true);
       const data = await fetch(

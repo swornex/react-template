@@ -1,4 +1,8 @@
-import { WeatherItemPropInterface } from '@/interfaces/weather';
+import { Icon } from '@phosphor-icons/react';
+export interface WeatherItemPropInterface {
+  icon: Icon;
+  name: string;
+}
 
 const WeatherItems = (props: WeatherItemPropInterface) => {
   const { icon: Icon, name } = props;

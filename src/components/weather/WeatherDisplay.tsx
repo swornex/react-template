@@ -1,4 +1,3 @@
-import { WeatherPropInterface } from '@/interfaces/weather';
 import {
   Clock,
   CloudRain,
@@ -8,6 +7,19 @@ import {
 } from '@phosphor-icons/react';
 import dayjs from 'dayjs';
 import WeatherItems from './WeatherItems';
+
+export interface WeatherResInterface {
+  interval: number;
+  rain: number;
+  relative_humidity_2m: number;
+  temperature_2m: number;
+  time: number;
+  wind_direction_10m: number;
+}
+
+interface WeatherPropInterface {
+  weather: WeatherResInterface;
+}
 
 const WeatherDisplay = (props: WeatherPropInterface) => {
   const { weather } = props;
