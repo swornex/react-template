@@ -1,11 +1,9 @@
-// import Timer from './components/timer/Timer';
-import Weather from './components/weather/Weather';
+import UserActivity from './components/userActivity/UserActivity';
 
 export const App = () => {
   return (
     <>
-      {/* <Timer /> */}
-      <Weather />
+      <UserActivity />
     </>
   );
 };
