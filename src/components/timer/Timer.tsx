@@ -20,7 +20,6 @@ export const Timer = () => {
     handleStartButton();
   }
   function handleStartButton() {
-    console.log(timer, 'timer inside function');
     interval.current = setInterval(() => {
       setTimer((timer) => (timer > 0 ? timer - 1 : 0));
     }, 1000);
