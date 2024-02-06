@@ -1,5 +1,6 @@
 import { FormData } from '@/interfaces/userActivity';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+// import { zodResolver } from '@hookform/resolvers/zod';
 
 const AddActivity = (props: {
   setUsersActivity: React.Dispatch<React.SetStateAction<FormData[]>>;
