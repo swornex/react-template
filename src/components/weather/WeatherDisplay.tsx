@@ -23,6 +23,7 @@ interface WeatherPropInterface {
 
 const WeatherDisplay = (props: WeatherPropInterface) => {
   const { weather } = props;
+  console.log(weather);
 
   const weatherItemsArr = [
     { icon: DropHalfBottom, name: `${weather.temperature_2m} °C` },

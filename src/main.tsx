@@ -21,8 +21,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'weather',
+        path: 'weather/:lat/:long',
         element: <Weather />,
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${params.lat}&longitude=${params.long}&current=temperature_2m,relative_humidity_2m,rain,wind_direction_10m&format=json&timeformat=unixtime`,
+          );
+          const data = await res.json();
+          return data.current;
+        },
       },
 
       {

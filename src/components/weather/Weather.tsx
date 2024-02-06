@@ -1,12 +1,13 @@
-import WeatherDisplay from './WeatherDisplay';
-import useWeather from '@/hooks/useWeather';
+import { useLoaderData } from 'react-router-dom';
+import WeatherDisplay, { WeatherResInterface } from './WeatherDisplay';
 
 const Weather = () => {
-  const { weather, isLoading } = useWeather(84, 28);
+  const weatherData = useLoaderData() as WeatherResInterface;
+
   return (
     <>
       <div className="flex h-full items-center justify-center bg-neutral-300">
-        {isLoading ? 'Loading...' : <WeatherDisplay weather={weather} />}
+        <WeatherDisplay weather={weatherData} />
       </div>
     </>
   );
