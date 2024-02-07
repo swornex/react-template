@@ -4,10 +4,13 @@ const Nav = () => {
   return (
     <div className=" bg-slate-500 p-2 text-xl text-white">
       <nav className="mx-52 my-4 flex justify-between ">
+        <Link to={'/'} className="hover:text-slate-300">
+          Home
+        </Link>
         <Link to={'timer'} className="hover:text-slate-300">
           Timer
         </Link>
-        <Link to={'weather/84/28'} className="hover:text-slate-300">
+        <Link to={'weather/28/84'} className="hover:text-slate-300">
           Weather Forecast
         </Link>
         <Link to={'useractivity'} className="hover:text-slate-300">
