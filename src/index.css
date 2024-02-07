@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+  }
+
+  #root {
+    height: 100%;
+  }
+}
+
+@layer components {
+  .items {
+    @apply flex items-center gap-2;
+  }
+
+  .input {
+    @apply input-bordered w-full max-w-xs;
+  }
+
+  .placeholder {
+    @apply placeholder:italic placeholder:text-slate-400;
+  }
+
+  .error {
+    @apply text-sm italic text-red-700;
+  }
+}
