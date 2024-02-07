@@ -7,6 +7,9 @@ import Timer from './components/timer/Timer';
 import UserActivity from './components/userActivity/UserActivity';
 import App from './App';
 import Home from './components/Home';
+import ReduxTimer from './components/redux-timer/ReduxTimer';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
@@ -21,15 +24,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'weather/:lat/:long',
+        path: 'reduxtimer',
+        element: <ReduxTimer />,
+      },
+      {
+        path: 'weather',
         element: <Weather />,
-        loader: async ({ params }) => {
-          const res = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${params.lat}&longitude=${params.long}&current=temperature_2m,relative_humidity_2m,rain,wind_direction_10m&format=json&timeformat=unixtime`,
-          );
-          const data = await res.json();
-          return data.current;
-        },
       },
 
       {
@@ -47,6 +47,8 @@ const router = createBrowserRouter([
 
 root.render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 );
